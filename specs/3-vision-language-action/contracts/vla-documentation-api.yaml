@@ -1,0 +1,154 @@
+openapi: 3.0.0
+info:
+  title: Vision-Language-Action (VLA) Documentation API
+  description: API for accessing VLA module documentation content
+  version: 1.0.0
+  contact:
+    name: AI-Driven Technical Book Team
+    email: team@example.com
+
+servers:
+  - url: https://your-username.github.io/ai-nat-book
+    description: Production server for AI-Driven Technical Book
+
+paths:
+  /docs/modules/vision-language-action/voice-to-action:
+    get:
+      summary: Get Voice-to-Action Interfaces documentation
+      description: Retrieve educational content explaining voice-to-action interfaces for humanoid robots, including OpenAI Whisper integration and voice input mapping
+      operationId: getVoiceToActionDocumentation
+      responses:
+        '200':
+          description: Voice-to-Action documentation content
+          content:
+            text/html:
+              schema:
+                type: string
+                description: HTML rendered documentation page
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "voice-to-action"
+                  title:
+                    type: string
+                    example: "Voice-to-Action Interfaces"
+                  content:
+                    type: string
+                    description: Markdown content of the documentation
+                  learning_objectives:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Understand voice command processing", "Learn OpenAI Whisper integration", "Map voice input to robot actions"]
+
+  /docs/modules/vision-language-action/cognitive-planning:
+    get:
+      summary: Get Cognitive Planning with LLMs documentation
+      description: Retrieve educational content on translating natural language into action plans using LLMs, task decomposition, and LLM-to-ROS 2 action pipelines
+      operationId: getCognitivePlanningDocumentation
+      responses:
+        '200':
+          description: Cognitive Planning documentation content
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "cognitive-planning"
+                  title:
+                    type: string
+                    example: "Cognitive Planning with LLMs"
+                  content:
+                    type: string
+                    description: Markdown content of the documentation
+                  learning_objectives:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Translate natural language to action plans", "Understand task decomposition", "Learn LLM-to-ROS 2 pipelines"]
+
+  /docs/modules/vision-language-action/autonomous-humanoid:
+    get:
+      summary: Get Autonomous Humanoid capstone documentation
+      description: Retrieve end-to-end system overview documentation covering navigation, perception, and manipulation flow with simulated humanoid executing spoken commands
+      operationId: getAutonomousHumanoidDocumentation
+      responses:
+        '200':
+          description: Autonomous Humanoid documentation content
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "autonomous-humanoid"
+                  title:
+                    type: string
+                    example: "Capstone: The Autonomous Humanoid"
+                  content:
+                    type: string
+                    description: Markdown content of the documentation
+                  learning_objectives:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Understand end-to-end system architecture", "Learn integration flow", "See complete autonomous flow"]
+
+components:
+  schemas:
+    VLADocumentation:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - learning_objectives
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the documentation page
+          example: "voice-to-action"
+        title:
+          type: string
+          description: Display title of the documentation
+          example: "Voice-to-Action Interfaces"
+        content:
+          type: string
+          description: Markdown content of the documentation
+        learning_objectives:
+          type: array
+          description: List of learning objectives for this content
+          items:
+            type: string
+        prerequisites:
+          type: array
+          description: Prerequisite knowledge areas
+          items:
+            type: string
+        related_topics:
+          type: array
+          description: Related topics and concepts
+          items:
+            type: string
+
+tags:
+  - name: vla-documentation
+    description: VLA module documentation endpoints
+  - name: educational-content
+    description: Educational content for humanoid robot systems
+
+externalDocs:
+  description: AI-Driven Technical Book Documentation
+  url: https://your-username.github.io/ai-nat-book/docs/intro

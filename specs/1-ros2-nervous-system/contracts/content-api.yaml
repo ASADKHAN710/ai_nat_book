@@ -1,0 +1,124 @@
+openapi: 3.0.0
+info:
+  title: ROS 2 Nervous System Content API
+  description: API for accessing educational content about ROS 2 as a robotic nervous system
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+  - url: https://staging-api.example.com/v1
+    description: Staging server
+
+paths:
+  /modules/ros2-nervous-system:
+    get:
+      summary: Get ROS 2 Nervous System module information
+      description: Retrieve metadata about the ROS 2 Nervous System module
+      responses:
+        '200':
+          description: Module information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Module'
+
+  /modules/ros2-nervous-system/chapters:
+    get:
+      summary: Get all chapters in ROS 2 Nervous System module
+      description: Retrieve a list of all chapters in the module
+      responses:
+        '200':
+          description: List of chapters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chapter'
+
+  /modules/ros2-nervous-system/chapters/{chapterId}:
+    get:
+      summary: Get specific chapter content
+      description: Retrieve content of a specific chapter by ID
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [intro-to-ros2, ros2-communication, robot-structure-basics]
+          description: ID of the chapter to retrieve
+      responses:
+        '200':
+          description: Chapter content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Chapter not found
+
+components:
+  schemas:
+    Module:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - chapters
+      properties:
+        id:
+          type: string
+          example: "ros2-nervous-system"
+        name:
+          type: string
+          example: "ROS 2 Nervous System"
+        description:
+          type: string
+          example: "Teaching ROS 2 as middleware connecting AI logic to humanoid robot bodies"
+        target_audience:
+          type: string
+          example: "AI students with basic Python; no prior robotics experience"
+        chapters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chapter'
+
+    Chapter:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - learning_objectives
+      properties:
+        id:
+          type: string
+          example: "intro-to-ros2"
+        title:
+          type: string
+          example: "Introduction to ROS 2"
+        sidebar_label:
+          type: string
+          example: "Intro to ROS 2"
+        description:
+          type: string
+          example: "Understanding ROS 2 as the robotic nervous system"
+        content:
+          type: string
+          description: Markdown content of the chapter
+          example: "# Introduction to ROS 2\n\nROS 2 (Robot Operating System 2) is a flexible framework for writing robot applications..."
+        learning_objectives:
+          type: array
+          items:
+            type: string
+          example: ["Understand what ROS 2 is", "Explain why middleware is needed in robotics", "Describe ROS 2 as a 'robotic nervous system'"]
+        prerequisites:
+          type: array
+          items:
+            type: string
+          example: ["Basic Python knowledge"]
+        next_chapter:
+          type: string
+          example: "ros2-communication"

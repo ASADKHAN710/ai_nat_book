@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run serve)",
+      "Bash(git fetch --all --prune)",
+      "Bash(.specify/scripts/powershell/create-new-feature.ps1 -Json \"Module: Module 3 – The AI-Robot Brain \\(NVIDIA Isaac\\)\n\nPurpose:\nIntroduce advanced perception, navigation, and training for humanoid robots using NVIDIA Isaac.\n\nAudience:\nStudents familiar with ROS 2 and simulation basics.\n\nFormat:\nDocusaurus documentation\n- All files in Markdown \\(.md\\)\n- Sidebar-ready\n\nChapters:\n1. NVIDIA Isaac Sim\n   - Photorealistic simulation\n   - Synthetic data generation\n   - Training perception models\n\n2. Isaac ROS & Perception\n   - Hardware-accelerated perception\n   - VSLAM fundamentals\n   - Sensor-to-AI pipelines\n\n3. Navigation & Movement\n   - Nav2 overview\n   - Path planning for humanoid robots\n   - Conceptual bipedal navigation flow\n\nSuccess criteria:\n- Reader understands Isaac''s role in robotics AI\n- Reader explains perception and navigation pipelines\n- Reader connects simulation to real-world deployment\n\nConstraints:\n- Concept-focused\n- Beginner-to-intermediate level\" -Number 1 -ShortName \"ai-robot-brain-isaac\" -Json)",
+      "Bash(mkdir -p specs/1-ai-robot-brain-isaac)",
+      "Bash(.specify/scripts/powershell/setup-plan.ps1 -Json)",
+      "Bash(.specify/scripts/powershell/check-prerequisites.ps1 -Json)",
+      "Bash(.specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "Bash(git rev-parse --git-dir)",
+      "Bash(mkdir -p specs/1-vision-language-action)",
+      "Bash(ls -d specs/*/)"
+    ]
+  }
+}
